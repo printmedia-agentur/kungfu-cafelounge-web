@@ -1,0 +1,55 @@
+<!-- Custom Success/Erro Message -->
+
+<div class="row show-hide-message" *ngIf="message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+<div *ngIf="!message">
+  <h4 class="page-header">Termin ansehen</h4>
+  <span *ngIf="!loading">
+    <h5>{{ appointmentDetails.date }} um {{appointmentDetails.time }} Uhr</h5>
+    <div class="row appointmentDetail">
+      <div class="col-xs-12">
+        <div class="card card-default" id="{{ appointmentDetails.id }}">
+          <div class="card-heading">
+            <h5 class="text-primary">{{ appointmentDetails.type }}</h5>
+            <span style="color:#ababab;font-style: italic;">Gebucht für {{ appointmentDetails.firstName }} {{appointmentDetails.lastName }} am {{appointmentDetails.dateCreated }}</span>
+          </div>
+          <div class="card-body">
+            <strong>Ihr Termin am {{ appointmentDetails.date }}, um {{appointmentDetails.time }} Uhr, bis {{appointmentDetails.endTime }} Uhr.</strong><br>
+            {{ appointmentDetails.calendar }} - {{ appointmentDetails.location }}
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12" *ngIf="appointmentDetails.canClientReschedule">
+        <span class="pull-left">
+          <a routerLink="/app/meine-termine" class="btn btn-primary" style="margin-right:10px;">
+            <i-chevron-left class="navbar-icons"></i-chevron-left> Zurück
+          </a>
+        </span>
+        <span class="pull-right">
+          <a class="btn btn-success" style="margin-right:10px;">
+            <i-calendar class="navbar-icons"></i-calendar> Termin verschieben
+          </a>
+          <a class="btn btn-danger" *ngIf="appointmentDetails.canClientCancel" (click)="cancelAppointmentModal()">
+            <i-x class="navbar-icons"></i-x> Termin absagen
+          </a>
+        </span>
+      </div>
+      <div class="col-xs-12" *ngIf="!appointmentDetails.canClientReschedule">
+        Dieser Termin kann nicht mehr verschoben oder abgesagt werden, da er sich entweder in der Vergangenheit befindet oder in weniger als 24 Stunden stattfindet.
+      </div>
+    </div>
+  </span>
+  <span *ngIf="loading">
+    <h5><ngx-skeleton-loader
+      count="1"
+      [theme]="{ 'border-radius': '4px', height: '20px', width: '150px', margin: '2px 0 0 0'}"
+    ></ngx-skeleton-loader></h5>
+    <h5 style="margin-top:40px;"><ngx-skeleton-loader
+      count="10"
+      [theme]="{ 'border-radius': '4px', height: '6px', width: '100%', margin: '10px 0 0 0'}"
+    ></ngx-skeleton-loader></h5>
+  </span>
+</div>

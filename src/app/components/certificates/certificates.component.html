@@ -1,0 +1,21 @@
+<h4 class="page-header">Meine Abonnements</h4>
+<span *ngIf="userCertificates">
+  <span *ngIf="userCertificates.length > 0">
+    <h5>Überblick Ihrer Abonnements:</h5>
+    <div class="row">
+      <div class="col-xs-12">
+        <app-certificate-list></app-certificate-list>
+      </div>
+    </div>
+  </span>
+  <span *ngIf="userCertificates.length === 0">
+    <h5>Keine Abonnements vorhanden.</h5>
+    <a routerLink="/app/shop">Kaufen</a> Sie Ihre erste 10er, 50er oder 100er-Karte.
+  </span>
+</span>
+<span *ngIf="!userCertificates">
+  <h5><ngx-skeleton-loader
+    count="1"
+    [theme]="{ 'border-radius': '4px', height: '20px', width: '185px', margin: '2px 0 0 0'}"
+  ></ngx-skeleton-loader></h5>
+</span>

@@ -1,0 +1,80 @@
+<div *ngIf="loading === false">
+  <div style="margin-top: 10px;" *ngFor="let userCertificate of userCertificates">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div class="widget certificate">
+          {{ userCertificate.name }}
+          <div class="progress">
+            <span *ngFor="let healformProduct of (healformProducts | certfilter: userCertificate.productID)">
+              <div class="progress-bar" role="progressbar"
+                [attr.aria-valuenow]="userCertificate?.remainingCounts[userCertificate?.appointmentTypeIDs[0]]"
+                [attr.aria-valuemax]="healformProduct?.appointmentTypeCounts[userCertificate?.appointmentTypeIDs[0]]"
+                aria-valuemin="0">
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <div class="row">
+          <div class="col-xs-12">
+            <h5 style="margin-top: 0;">{{ userCertificate.name }}</h5>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-md-6">
+            <p>
+              <span style="color:#ababab;font-style: italic;">Zertifikat-Nr.:</span><br>
+              <strong>{{ userCertificate.certificate }}</strong>
+            </p>
+            <p>
+              <span style="color:#ababab;font-style: italic;">Registriert für:</span><br>
+              <strong>{{ userCertificate.email }}</strong>
+            </p>
+          </div>
+          <div class="col-xs-12 col-md-6">
+            <p>
+              <span style="color:#ababab;font-style: italic;">Verbleibende Termine</span><br>
+              <strong>{{userCertificate && userCertificate?.remainingCounts[userCertificate?.appointmentTypeIDs[0]]}}</strong>
+              Termin(e) von
+              <span *ngFor="let healformProduct of (healformProducts | certfilter: userCertificate.productID)">
+                    {{ healformProduct?.appointmentTypeCounts[userCertificate?.appointmentTypeIDs[0]] }} verbleibend.
+                  </span>
+            </p>
+            <p>
+              <span style="color:#ababab;font-style: italic;">Verfallsdatum</span><br>
+              <span *ngIf="!userCertificate.expiration">-</span>
+              <span *ngIf="userCertificate.expiration">{{ userCertificate.expiration }}</span>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading === true">
+  <div style="margin-top: 10px;">
+    <div class="row">
+      <div class="col-xs-12 col-md-4">
+        <div>
+          <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '10px', height: '100px'}">
+          </ngx-skeleton-loader>
+        </div>
+      </div>
+      <div class="col-xs-12 col-md-8">
+        <ngx-skeleton-loader count="3" [theme]="{ 'border-radius': '4px', height: '40px'}">
+        </ngx-skeleton-loader>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

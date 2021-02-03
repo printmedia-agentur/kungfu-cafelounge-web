@@ -1,0 +1,168 @@
+<h4 class="page-header">Neuen Termin buchen</h4>
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message" *ngIf="message">
+  <div class="col-xs-12">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+</div>
+<h5>Ort auswählen:</h5>
+<div class="option-group">
+  <div class="option-container">
+    <input class="option-input" checked id="option-1" type="radio" name="location"
+           [(ngModel)]="selectedAppointmentLocation"
+           [value]="1840022" (ngModelChange)="onChangeLocation($event)"/>
+    <input class="option-input" checked id="option-2" type="radio" name="location"
+           [(ngModel)]="selectedAppointmentLocation"
+           [value]="1868398" (ngModelChange)="onChangeLocation($event)"/>
+    <label class="option" for="option-1">
+      <span class="option__indicator"></span>
+      <span class="option__label"> <sub>HEALFORM</sub>Kassel </span>
+    </label>
+    <label class="option" for="option-2">
+      <span class="option__indicator"></span>
+      <span class="option__label"> <sub>HEALFORM</sub>Baunatal </span>
+    </label>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12">
+    <h5>Termin-Typ auswählen:</h5>
+    <select class="form-control" type="appointmentType" [(ngModel)]="selectedAppointmentType"
+            (ngModelChange)="onChangeTypeId($event)">
+      <option *ngFor="let appointmentType of (appointmentTypes | filter: false)"
+              [ngValue]="{id: appointmentType.id, price: appointmentType.price}">{{
+        appointmentType.name }}</option>
+    </select>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="ui form">
+      <div class="field">
+        <h5>Datum auswählen:</h5>
+        <label>Datum</label>
+        <div class="ui left icon input">
+          <i class="calendar icon"></i>
+          <input class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
+                 [(ngModel)]="selectedDate" [options]="appointmentDateOptions" #dp="ngx-mydatepicker"
+                 (dateChanged)="onDateSelect($event)"
+                 (click)="dp.toggleCalendar()" [readonly]="true"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <h5>Verfügbare Uhrzeiten:</h5>
+    <label>Uhrzeit</label>
+    <select class="form-control" type="appointmentTime" [(ngModel)]="selectedAppointmentTime">
+      <option *ngFor="let appointmentTime of appointmentTimes" [ngValue]="appointmentTime.time">
+        {{ appointmentTime.time }}
+      </option>
+    </select>
+    <ul>
+      <li *ngFor="let appointmentTime of appointmentTimes">
+        {{ appointmentTime.time }}
+      </li>
+    </ul>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <h5>Wie möchten sie bezahlen?</h5>
+    <input name="payment" [(ngModel)]="selectedPaymentMethod" type="radio" [value]="'stripe'"/> Kreditkarte&nbsp;&nbsp;
+    <img src="./../../../../assets/svg/icons/payment/mastercard.svg" width="35">
+    <img src="./../../../../assets/svg/icons/payment/visa.svg" width="35">
+    <img src="./../../../../assets/svg/icons/payment/amex.svg" width="35"><br>
+    <input name="payment" [(ngModel)]="selectedPaymentMethod" type="radio" [value]="'paypal'"/> Paypal&nbsp;&nbsp;
+    <img src="./../../../../assets/svg/icons/payment/paypal.svg" width="35"><br>
+    <label>
+      <input [ngClass]="{disabled: userCertificates.length === 0}" [attr.disabled]="disableInput?'':null" name="payment"
+             [(ngModel)]="selectedPaymentMethod" type="radio" [value]="'certificate'"/>
+      Zertifikat&nbsp;&nbsp;
+      <img src="https://cdn.aaronfagan.ca/demo/graphics/svg-credit-card-payment-icons/flat-rounded/generic.svg"
+           width="22"><br>
+    </label>
+  </div>
+  <div class="col-xs-12 col-md-6">
+    <div *ngIf="selectedPaymentMethod === 'paypal'">
+      <h5>Zahlung mit PayPal:</h5>
+      <p>Ihre Kredikarte wird mit {{ selectedAppointmentPricing }}€ belastet.</p>
+      <ngx-paypal [config]="payPalConfig"></ngx-paypal>
+      <div class="mt-2" *ngIf="showSuccess">
+        <div class="alert alert-success mt-2">
+          Yeah! Your <em>sandbox</em> transaction was successful.
+        </div>
+      </div>
+      <div class="mt-2" *ngIf="showError">
+        <div class="alert alert-danger mt-2">
+          Oh no! Your <em>sandbox</em> transaction failed.
+        </div>
+      </div>
+      <div class="mt-2" *ngIf="showCancel">
+        <div class="alert alert-info mt-2">
+          Your transaction was cancelled.
+        </div>
+      </div>
+    </div>
+    <div *ngIf="selectedPaymentMethod === 'stripe'">
+      <h5>Zahlung mit Kreditkarte:</h5>
+      <p>Ihre Kredikarte wird mit {{ selectedAppointmentPricing }}€ belastet.</p>
+      <ngx-stripe-card [options]="cardOptions" [elementsOptions]="elementsOptions"></ngx-stripe-card>
+      <p>&nbsp;</p>
+      <button class="btn btn-primary" (click)="buyViaStripe()">Für {{ selectedAppointmentPricing }}€ kaufen</button>
+      <app-payment-request
+        [amount]="2300"
+        [label]="'Your Awesome Product!'">
+      </app-payment-request>
+    </div>
+    <div *ngIf="selectedPaymentMethod === 'certificate' && disableInput === null">
+      <h5>Zahlung mit Zertifikat:</h5>
+      <!--<ul>
+        <li *ngFor="let userCertificate of userCertificates">
+          {{ userCertificate.name }}
+        </li>
+      </ul>-->
+      <label>Zertifikat auswählen</label>
+      <select class="form-control" type="userCertificate" [(ngModel)]="selectedCertificate"
+              (ngModelChange)="onCertificateSelect($event)">
+        <option *ngFor="let userCertificate of userCertificates"
+                [ngValue]="{code: userCertificate.certificate, remaining: userCertificate.remainingCounts[userCertificate.appointmentTypeIDs[0]]}">
+          {{ userCertificate.name }}
+        </option>
+      </select><br>
+      <button class="btn btn-primary" (click)="buyViaCertificate()">Termin mit "{{ selectedCertificateCode }}" buchen</button><br>
+      Code: {{ selectedCertificateCode }} <span class="text-success"
+                                                *ngIf="checkCertificates &&	checkCertificates.success === true">✓</span><br>
+      Noch verfügbar: {{ selectedCertificateRemaining }}
+    </div>
+  </div>
+</div>
+<hr>
+<!--
+<p>models:</p>
+<p>appointmentObj<br>
+  datetime: {{ selectedAppointmentTime }}<br>
+  appointmentTypeID: {{ selectedAppointmentTypeId }}<br>
+  calendarID: {{ selectedAppointmentLocation }} <br>
+  firstName: {{ firstName }}<br>
+  lastName: {{ lastName }}<br>
+  email: {{ email }}<br>
+  phone: {{ phone }}<br>
+  certificate: {{ selectedCertificateCode }}<br>
+  price: {{ selectedAppointmentPricing }}
+</p>
+
+<p>payment<br>
+  paymentMethod: {{ selectedPaymentMethod }}
+</p>
+
+<p>chargeObj<br>
+  stripeID: {{ stripeID }}<br>
+  stripeToken: {{ stripeToken }}<br>
+  amount: {{ selectedAppointmentPricingFormatted }}
+</p>-->

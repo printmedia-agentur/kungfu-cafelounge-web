@@ -1,0 +1,49 @@
+<div class="row" style="height: 100%">
+  <div class="col-lg-7 col-sm-12 left-panel">
+    <div class="row">
+      <div class="col-xs-12" style="min-width: 380px;">
+        <div class="show-hide-message">
+          <div [ngClass]="messageClass">
+            {{ message }}
+          </div>
+        </div>
+        <h3 class="page-header text-primary text-center" style="margin-bottom: 20px;">healform</h3>
+        <div class="card card-login">
+          <h5>Login 👋</h5>
+          <!-- Login Form -->
+          <form [formGroup]="form" (submit)="onLoginSubmit()">
+            <!-- Username Field -->
+            <div class="form-group">
+              <label for="username">Benutzername</label>
+              <div [ngClass]="{'has-error': form.controls.username.errors && form.controls.username.dirty, 'has-success': form.controls.username.valid && form.controls.username.dirty }">
+                <input class="form-control" type="text" name="username" formControlName="username" autofocus/>
+                <!-- Validation -->
+                <ul class="help-block">
+                  <li *ngIf="form.controls.username.errors?.required && form.controls.username.dirty">This field is required.</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Password Field  -->
+            <div class="form-group">
+              <label for="password">Passwort</label>
+              <div [ngClass]="{'has-error': form.controls.password.errors && form.controls.password.dirty, 'has-success': form.controls.password.valid && form.controls.password.dirty }">
+                <input class="form-control" type="password" name="password" formControlName="password" />
+                <!-- Validation -->
+                <ul class="help-block">
+                  <li *ngIf="form.controls.password.errors?.required && form.controls.password.dirty">This field is required.</li>
+                </ul>
+              </div>
+            </div>
+            <!-- Submit Button -->
+            <input [disabled]="!form.valid || processing" class="btn btn-primary" type="submit" value="Login" />
+          </form>
+          <hr>
+          <p>Passwort vergessen? <a routerLink="/auth/register">Registrieren</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-5 col-sm-12 right-panel">
+    <h3 style="color: #fff">HEALFORM FOR SPORTS</h3>
+  </div>
+</div>

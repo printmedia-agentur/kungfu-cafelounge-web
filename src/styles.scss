@@ -1,4 +1,739 @@
-/* You can add global styles to this file, and also import other style files */
+$primary: #5243aa; // #5243aa;
+$primary-light: rgba($primary, 0.07);
 
-/* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+$secondary: #03dac5;
+$secondary-light: rgba($secondary, 0.07);
+
+$bg-light: #f5f7f8;
+$bg-light-navbar: #fff;
+
+$bg-dark: #23232e;
+$bg-dark-navbar: #000000;
+
+$text: #324b60;
+
+$red: #b8081a;
+$red-light: rgba($red, 0.07);
+
+$yellow: #feaa02;
+$yellow-light: rgba($yellow, 0.07);
+
+$green: #33b37e;
+$green-light: rgba($green, 0.07);
+
+html {
+  height: 100%;
+}
+
+body {
+  font-family: 'Circular Std', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 15px;
+  color: $text;
+  background-color: $bg-light;
+  overflow-y: scroll;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: 768px;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    min-height: unset;
+  }
+}
+
+@media (min-width: 992px) {
+  .container {
+    width: 800px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 800px;
+  }
+}
+
+input[type="radio"], .radio input[type="radio"], .radio-inline input[type="radio"] {
+  margin-top: 8px;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: $text;
+  font-weight: 500;
+}
+
+a:hover, a:focus {
+  color: #47a1a5;
+  text-decoration: underline;
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+  color: $text;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: #98a5af;
+  font-weight: 600;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+  color: $text;
+  background-color: transparent;
+}
+
+.navbar-default .navbar-nav > li > a:active {
+  color: rgba(152, 165, 175, 0.5);
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+  color: $primary;
+  background-color: rgb(245, 247, 248);
+  /*border-bottom: 3px solid;
+  padding-bottom: 3px;*/
+}
+
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: $primary;
+  background-color: #fff;
+}
+
+.navbar-default .navbar-brand {
+  color: $primary;
+  font-weight: 500;
+}
+
+.navbar {
+  -webkit-box-shadow: none;
+  background: #fff;
+  box-shadow: 0 5px 5px rgba(0,0,0,.01);
+}
+
+@supports ((-webkit-backdrop-filter: blur(2em)) or (backdrop-filter: blur(2em))) {
+  .navbar {
+    background-color: rgba(255, 255, 255, .65);
+    -webkit-backdrop-filter: blur(2em);
+    backdrop-filter: blur(2em);
+  }
+
+  .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+    background-color: transparent;
+  }
+}
+
+hr {
+  margin: 25px 0;
+  border-top: 1px solid $primary-light;
+}
+
+.btn {
+  text-transform: none;
+  border: none;
+  box-shadow: none;
+  transition: all 0.4s;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.btn-primary {
+  color: $primary;
+  background-color: $primary-light;
+  border-color: transparent;
+}
+
+.btn-primary:hover, .btn-primary:active:hover {
+  background-color: $primary;
+  color: #fff;
+}
+
+.btn-danger {
+  color: $red;
+  background-color: $red-light;
+  border-color: transparent;
+}
+
+.btn-warning {
+  color: $yellow;
+  background-color: $yellow-light;
+  border-color: transparent;
+}
+
+.btn-warning:hover, .btn-warning:active:hover {
+  background-color: $yellow;
+}
+
+.btn-success{
+  color: $green;
+  background-color: $green-light;
+  border-color: transparent;
+}
+
+.btn-success:hover, .btn-success:active:hover {
+  background-color: $green;
+}
+
+.panel {
+  border: none;
+  border-radius: 3px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+.panel-footer,
+.panel-header {
+  background-color: #ffffff;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+}
+
+.dropdown-menu {
+  margin-top: -1px !important;
+  border: 1px solid #ececec;
+  box-shadow: none;
+  border-top: none;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
+  color: #ffffff;
+  text-decoration: none;
+  background-color: $primary-light;
+  outline: 0;
+  color: $primary;
+}
+
+/*.contentWrapper .page-header {*/
+/*  padding-bottom: 10.5px;*/
+/*  margin: 0 0 23px;*/
+/*  border-bottom: 1px solid #eeeeee;*/
+/*}*/
+
+/*.contentWrapper {*/
+/*  background: #fff;*/
+/*  padding: 30px;*/
+/*  border-radius: 5px;*/
+/*  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.15);*/
+/*}*/
+
+.infoWrapper {
+  padding: 0px;
+}
+
+.main .alert {
+  padding: 11px;
+  font-size: 13px;
+  margin: 0px 15px 15px;
+}
+
+.alert-info {
+  background-color: $primary;
+}
+
+.alert-warning {
+  background-color: $yellow;
+}
+
+.alert-danger {
+  background-color: $red;
+}
+
+.alert-success {
+  background-color: $green;
+}
+
+.alert button.btn.btn-xs.btn-default.pull-right {
+  color: #fff;
+  background: transparent;
+  border: 1px solid #fff;
+  padding: 4px 10px;
+  margin-top: -2px;
+  font-weight: 400;
+  font-size: 12px;
+}
+
+.alert button.btn.btn-xs.btn-default.pull-right:hover {
+  color: #5243aa;
+  background: white;
+  border: 1px solid #fff;
+}
+
+button.btn.btn-xs.btn-default.pull-right:active {
+  opacity: .75;
+  background: #fff;
+  color: #5243aa;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:hover, .navbar-default .navbar-nav>.open>a:focus {
+  color: #212121;
+  background-color: transparent;
+}
+
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  cursor: not-allowed;
+  filter: alpha(opacity=65);
+  opacity: 0.25;
+  box-shadow: none;
+}
+
+.breadcrumb {
+  padding: 8px 15px;
+  margin-bottom: 23px;
+  list-style: none;
+  background-color: #ffffff;
+  border-radius: 3px;
+}
+
+.breadcrumb > .active {
+  color: #929292;
+}
+
+input,
+button,
+select,
+textarea {
+  max-width: 100%;
+}
+
+.page-header {
+  padding-bottom: 10.5px;
+  margin: 0px 0 10px;
+  border-bottom: none;
+}
+
+.table > thead > tr > th {
+  vertical-align: bottom;
+  border-bottom: none;
+}
+
+.widget {
+  display: block;
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, .1);
+  padding: 5px 16px 15px;
+}
+
+.widget.next_appointment {
+  height: 100%;
+  position: relative;
+  background-image: radial-gradient(circle at 0 0, lighten( $primary, 2% ), darken( $primary, 8% )), linear-gradient(darken( $primary, 7% ), lighten( $primary, 3% ));
+  color: #fff;
+  -webkit-animation: Gradient 30s ease infinite;
+  -moz-animation: Gradient 30s ease infinite;
+  animation: Gradient 30s ease infinite;
+}
+
+.widget .time {
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.widget.certificate {
+  background-image: radial-gradient(circle at 0 0, rgba(101, 207, 134, 0.8), rgba(101, 207, 187, 0.54)), linear-gradient(#359653, #35967b);
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  min-height: 100px;
+  padding: 10px 20px;
+  -webkit-animation: Gradient 30s ease infinite;
+  -moz-animation: Gradient 30s ease infinite;
+  animation: Gradient 30s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@-moz-keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+@keyframes Gradient {
+  0% {
+    background-position: 0% 50%
+  }
+  50% {
+    background-position: 100% 50%
+  }
+  100% {
+    background-position: 0% 50%
+  }
+}
+
+.table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+  padding: 8px;
+  line-height: 2;
+  vertical-align: middle;
+  border-top: 1px solid #ececec;
+}
+
+.btn-primary:active {
+  background-color: $primary;
+  background-image: radial-gradient(circle, $secondary-light 10%, $primary 11%);
+  background-repeat: no-repeat;
+  background-size: 1000% 1000%;
+  box-shadow: none;
+  outline: 0;
+}
+
+.contentWrapper .alert {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.btn-primary:focus {
+  background-color: $primary;
+}
+
+.btn-default:active {
+  box-shadow: none;
+}
+
+*:focus {
+  outline: none !important
+}
+
+.has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
+  color: #b70e4a;
+}
+
+.has-error input:not([type=checkbox]), .has-error .form-control, .has-error input.form-control[readonly], .has-error input[type=text][readonly], .has-error [type=text].form-control[readonly], .has-error input:not([type=checkbox]):focus, .has-error .form-control:focus {
+  border-bottom: none;
+  box-shadow: inset 0 -2px 0 #b70e4a;
+}
+
+.help-block {
+  display: block;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  color: #a6a6a6;
+  padding: 5px 15px;
+  font-size: 13px;
+}
+
+.progress {
+  margin: 10px 0;
+  background-color: transparent;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.progress-bar {
+  background-color: #ffffff;
+  box-shadow: none;
+}
+
+.progress-bar:last-child:before {
+  display: block;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  z-index: -1;
+  background-color: transparent;
+  border-radius: 3px;
+  border: 1px solid #fff;
+}
+
+.progress-bar:last-child {
+  border-radius: 3px;
+}
+
+ngx-skeleton-loader {
+  position: relative;
+  display: grid;
+}
+
+.table-icons {
+  display: block !important;
+  width: 20px!important;
+  height: 20px!important;
+}
+
+.navbar-icons {
+  display: inline-block;
+  width: 17px !important;;
+  fill: none;
+  margin-right: 4px;
+  top: 3px;
+  position: relative;
+}
+
+.navbar-icons__small {
+  width: 16px !important;
+  height: 16px !important;;
+  top: 4px !important;;
+  position: relative !important;;
+  margin-right: 5px !important;;
+}
+
+.dropdown-menu > li > a {
+  padding: 6px 20px;
+  color: #98a5af;
+}
+
+li .dropdown-divider {
+  border-top: 1px solid #ececec;
+  position: relative;
+  display: block;
+  margin: 7px 0;
+}
+
+.pagination > li > a:hover, .pagination > li > span:hover, .pagination > li > a:focus, .pagination > li > span:focus {
+  color: $text;
+  background-color: rgba(50, 75, 96, 0.03);
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  z-index: 3;
+  color: $primary;
+  cursor: default;
+  background-color: $primary-light;
+  border-color: transparent;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  z-index: 3;
+  color: $primary;
+  cursor: default;
+  background-color: $primary-light;
+  border-color: transparent;
+  border-radius: 4px;
+}
+
+.pagination > li > a, .pagination > li > span {
+  position: relative;
+  float: left;
+  padding: 1px 16px;
+  margin-left: -1px;
+  line-height: 1.846;
+  color: $primary;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: transparent;
+}
+
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 23px 0;
+  border-radius: 3px;
+  padding: 4px 4px;
+  background-color: #fff;
+}
+
+.dropdown-menu>li>a {
+  font-weight: 600;
+}
+
+.dropdown-menu>li>a:hover, .dropdown-menu>li>a:focus {
+  background-color: transparent;
+  color: #324b60;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #98a5af;
+  }
+
+  .li__profilePicture {
+    display: none!important;
+  }
+
+  .navbar-nav {
+    margin: 0px -15px!important;
+  }
+}
+
+router-outlet ~ * {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  right: 0;
+  left: 0;
+  padding: 0 15px;
+}
+
+.option {
+  color: $primary;
+}
+
+.option__indicator:before,
+.option__indicator:after {
+  border: solid 2px $primary;
+}
+
+.option__indicator:after {
+  background: $primary;
+}
+
+.option__label:after {
+  border: solid 1px $primary;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus {
+  border: none;
+  -webkit-box-shadow: inset 0 -2px 0 $primary;
+  box-shadow: inset 0 -2px 0 $primary;
+  color: $primary;
+}
+
+.nav-tabs>li>a:hover, .nav-tabs>li>a:focus:hover {
+  background-color: transparent;
+  -webkit-box-shadow: inset 0 -2px 0 $primary;
+  box-shadow: inset 0 -2px 0 $primary;
+  color: $primary;
+}
+
+select:focus, select.form-control:focus {
+  -webkit-box-shadow: inset 0 -2px 0 $primary;
+  box-shadow: inset 0 -2px 0 $primary;
+}
+
+.nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus:hover {
+  border: none;
+  color: $primary;
+}
+
+a:hover {
+  color: lighten( $primary, 15% );
+  text-decoration: none;
+}
+
+a:focus {
+  color: lighten( $primary, 25% );
+  text-decoration: none;
+}
+
+input[type="radio"]:before, .radio input[type="radio"]:before, .radio-inline input[type="radio"]:before {
+  background-color: $primary;
+}
+
+input[type="radio"]:checked:after, .radio input[type="radio"]:checked:after, .radio-inline input[type="radio"]:checked:after {
+  border-color: $primary;
+}
+textarea:focus, textarea.form-control:focus, input.form-control:focus, input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=number]:focus, [type=text].form-control:focus, [type=password].form-control:focus, [type=email].form-control:focus, [type=tel].form-control:focus, [contenteditable].form-control:focus {
+  -webkit-box-shadow: inset 0 -2px 0 $primary;
+  box-shadow: inset 0 -2px 0 $primary;
+}
+
+.card.card-default {
+  background-color: #fff;
+  margin: 12px 0 25px;
+  border-top: 2px solid $primary;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card.card-login {
+  background-color: #fff;
+  margin: 12px 0 25px;
+  border-top: 2px solid $primary;
+  border-radius: 5px;
+  overflow: hidden;
+  -webkit-box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+.card .card-heading {
+  padding: 10px 15px;
+}
+
+.card .card-body {
+  padding: 10px 15px 15px;
+}
+
+.text-primary {
+  color: $primary;
+}
+
+.right-panel {
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  background-color: $primary;
+  height : 100%;
+  color : #FFF;
+  background-image: url('./assets/images/login__screens/sketeboard.jpg');
+  background-size: cover;
+
+  &:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-image: linear-gradient(to bottom,$primary-light,$primary);
+    opacity: .6;
+  }
+}
+
+.left-panel {
+  display : flex;
+  justify-content : center;
+  align-items : center;
+  background-color:#f5f7f8;
+  height : 100%;
+  color : #3d231b;
+}
+@media (max-width: 1200px) {
+  .left-panel {
+    height: 50%;
+    min-height: 620px;
+    width: 100%;
+  }
+  .right-panel {
+    height:50%;
+  }
+}
+
+.btn-primary.disabled:hover, .btn-primary[disabled]:hover, fieldset[disabled] .btn-primary:hover, .btn-primary.disabled:focus, .btn-primary[disabled]:focus, fieldset[disabled] .btn-primary:focus, .btn-primary.disabled.focus, .btn-primary[disabled].focus, fieldset[disabled] .btn-primary.focus {
+  background-color: $primary;
+  border-color: transparent;
+}

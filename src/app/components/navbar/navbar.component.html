@@ -1,0 +1,110 @@
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+        aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" routerLink="/app/meine-termine">healform</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-left">
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/app/meine-termine"><i-calendar class="navbar-icons"></i-calendar> Termine</a>
+        </li>
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/app/meine-abos"><i-award class="navbar-icons"></i-award> Abo's</a>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/app/start">Start</a>
+        </li>
+        <!-- <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/dashboard">Dashboard</a>
+        </li> -->
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/app/termin-buchen"><i-plus class="navbar-icons"></i-plus> Neuer Termin</a>
+        </li>
+        <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/app/shop"><i-shopping-cart class="navbar-icons"></i-shopping-cart> Shop</a>
+        </li>
+        <!-- <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/blog">Blog</a>
+        </li> -->
+        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/auth/login">Login</a>
+        </li>
+        <li *ngIf="!authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+          <a routerLink="/auth/register">Registrieren</a>
+        </li>
+        <li *ngIf="authService.loggedIn() && loading === false">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+            <i-user class="navbar-icons"></i-user> {{ firstName }}
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a (click)="refresh()"><i-rotate-cw class="navbar-icons__small"></i-rotate-cw> Aktualisieren</a>
+            </li>
+            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a routerLink="/app/mein-profil"><i-user class="navbar-icons__small"></i-user> Mein Profil</a>
+            </li>
+            <!--<li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a routerLink="/app/meine-bestellungen"><i-shopping-bag class="navbar-icons__small"></i-shopping-bag> Meine Bestellungen</a>
+            </li>
+            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a routerLink="/app/meine-bestellungen"><i-box class="navbar-icons__small"></i-box> Aktivierte Apps</a>
+            </li>-->
+            <li>
+              <div class="dropdown-divider"></div>
+            </li>
+            <!--<li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a routerLink="/app/einstellungen"><i-settings class="navbar-icons__small"></i-settings> Einstellungen</a>
+            </li>-->
+            <!--<li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a routerLink="/app/einstellungen"><i-moon class="navbar-icons__small"></i-moon> Nachtmodus</a>
+            </li>-->
+            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a (click)="onLogoutClick()"><i-log-out class="navbar-icons__small"></i-log-out> Logout</a>
+            </li>
+            <li>
+              <div class="dropdown-divider"></div>
+            </li>
+            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a href="#"><i-more-horizontal class="navbar-icons__small"></i-more-horizontal> Mehr / Über</a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="authService.loggedIn() && loading === true">
+          <a class="dropdown-toggle" type="button" data-toggle="dropdown">
+            <ngx-skeleton-loader
+              count="1"
+              [theme]="{ 'border-radius': '4px', height: '20px', width: '75px', margin: '2px 0 0 0'}"
+            ></ngx-skeleton-loader>
+          </a>
+          <ul class="dropdown-menu">
+            <li *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+              <a href="#" (click)="onLogoutClick()">Logout</a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="authService.loggedIn()" class="li__profilePicture">
+          <a *ngIf="loading === false" class="profilePicture">
+            <ngx-avatar bgColor="#f5f7f8" fgColor="#59b7bb" name="{{ firstName }} {{ lastName }}" gravatarId="{{ email }}" size="36" [round]="true">
+            </ngx-avatar>
+          </a>
+          <a *ngIf="loading === true" class="profilePicture">
+            <ngx-skeleton-loader count="1" [theme]="{ 'border-radius': '50px', margin: '0px', height: '36px', width: '36px'}">
+            </ngx-skeleton-loader>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
+  </div>
+</nav>

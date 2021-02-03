@@ -1,0 +1,19 @@
+<div class="row" *ngIf="loading === false">
+  <div class="col-xs-12">
+    <div class="row show-hide-message" *ngIf="message">
+      <div class="col-xs-12">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+    </div>
+    <div class="alert alert-info verify" *ngIf="authService.loggedIn() && !isEmailVerified">
+      <button class="btn btn-xs btn-default pull-right" (click)="resendVerifyMail()" >Mail erneut senden</button>
+      Bitte bestätige deine E-Mail Adresse durch die Mail
+    </div>
+    <div class="alert alert-info verify" *ngIf="authService.loggedIn() && !isPhoneVerified">
+    <!-- <button class="btn btn-xs btn-default pull-right" (click)="resendVerifyMail()" >Mail erneut senden</button> -->
+      Bitte bestätige deine Telefon-Nr. Adresse durch die SMS
+    </div>
+  </div>
+</div>

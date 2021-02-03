@@ -1,0 +1,24 @@
+<div class="widget next_appointment" style="margin-top: 10px;">
+  <div *ngIf="loading === false">
+    <span class="time">{{nextUserAppointments.date }}</span><br>
+    <strong>Um {{nextUserAppointments.time }} Uhr,</strong> bei<br>
+    {{nextUserAppointments.calendar}}
+  </div>
+  <div *ngIf="loading === true">
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ 'border-radius': '4px', height: '25px', background: '0 0/200px 100% no-repeat rgba(255, 255, 255, 0.15)',
+              'background-image': 'linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.2),rgba(255,255,255,0))', margin: '10px 0 0'}"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ 'border-radius': '4px', height: '13px', background: '0 0/200px 100% no-repeat rgba(255, 255, 255, 0.15)',
+              'background-image': 'linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.2),rgba(255,255,255,0))', margin: '20px 0 0'}"
+    ></ngx-skeleton-loader>
+    <ngx-skeleton-loader
+      count="1"
+      [theme]="{ 'border-radius': '4px', height: '13px', background: '0 0/200px 100% no-repeat rgba(255, 255, 255, 0.15)',
+              'background-image': 'linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.2),rgba(255,255,255,0))', margin: '20px 0 0'}"
+    ></ngx-skeleton-loader>
+  </div>
+</div>

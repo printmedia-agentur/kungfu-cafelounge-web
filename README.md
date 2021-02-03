@@ -1,27 +1,58 @@
-# KungFuCafelounge
+<div align="center"><img src="https://assets.dmnktoe.de/__ext/healform/healform_logo_wide.png" width="400"></div>
+<br><br>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.0.
+<p align="center"><img alt="Discord" src="https://img.shields.io/discord/547850652479520769.svg?color=4cb697&label=chat"> <img alt="undefined" src="https://img.shields.io/github/languages/top/dmnktoe/myhealform.svg?style=flat"> <img alt="undefined" src="https://img.shields.io/github/languages/code-size/dmnktoe/myhealform.svg?style=flat"> <img alt="undefined" src="https://img.shields.io/github/issues-raw/dmnktoe/myhealform.svg?style=flat"> <img alt="undefined" src="https://img.shields.io/github/issues-closed-raw/dmnktoe/myhealform.svg?style=flat"> <img alt="undefined" src="https://img.shields.io/website-up-down-green-red/https/my.healform.de/app/.svg?style=flat"> <img alt="undefined" src="https://img.shields.io/uptimerobot/ratio/m780919962-c16c97a6b6140da7034f481f.svg?label=server-uptime&style=flat"> <img alt="undefined" src="https://img.shields.io/uptimerobot/ratio/m782108295-5097c2c223de2e943f8f7760.svg?label=api-uptime&style=flat"> <img alt="undefined" src="https://img.shields.io/github/package-json/v/dmnktoe/myhealform.svg?style=flat"> <img alt="undefined" src="https://img.shields.io/github/release/dmnktoe/myhealform.svg?style=flat"> <img alt="undefined" src="https://img.shields.io/github/license/dmnktoe/myhealform.svg?style=flat"> </p>
 
-## Development server
+<hr>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# myHEALFORM
 
-## Code scaffolding
+Die erste original Cryosauna / Kältekammer in Kassel und Baunatal gilt als eine der weltweit modernsten physikalischen Therapiemöglichkeiten für Gesundheit, Fitness, Leistungsfähigkeit und Schönheit!
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Including frontend-client optimzed for web as a web-app, backend-server and the official macOS app.
 
-## Build
+## Overview
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+### Usage
 
-## Running unit tests
+Sign-up for a new account is the easiest way to start scheduling and managing your appointments.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Features
 
-## Running end-to-end tests
+**Elementary functions to-do list:**
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- [ ] Book appointment (w/ payment gate)
+- [ ] Certificate shop (w/ payment gate)
+- [ ] Reschedule possibility **(in progress)**
+- [ ] Stripe & PayPal integration
+- [x] View appointment by :id
+- [ ] Buy coupons
+- [ ] Cancel appointment **(in progress)**
+- [ ] E-Mail account verification **(in progress)**
+- - [ ] Resend account verification email **(in progress)**
+- [ ] Create user in Acuity during user register
 
-## Further help
+**Future roadmap:**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+- [ ] 2-Factor-Authorization
+- [ ] Update profile
+- [ ] Avatar
+- [ ] Mailchimp & Intercom integration
+- [ ] Twilio phone number verification
+- [ ] Create user in Intercom during user register
+- [ ] better error handling through flash messages
+- [ ] confirm account in frontend
+- [ ] email template
+- [ ] loading indicator
+
+**Bugs**
+
+- [ ] confirm mail OR phone - only one info message gets displayed
+- [ ] flash messages not in container
+- [ ] display something when there are no items available
+- many functions getting called 3 or 4 times
+- - [ ] dashboard api
+- - [ ] reactive form
+- [ ] avatar and flash messages dont get updated after logout (and new log-in)
+- - [ ] avatar: no gravatar
+- [ ] login logout behavior

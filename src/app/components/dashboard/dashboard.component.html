@@ -1,0 +1,56 @@
+<h4 class="page-header">Dashboard</h4>
+<h5>Meine nächsten Termine</h5>
+<hr>
+<div class="row appointmentList">
+  <div class="col-xs-12 col-md-12">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Datum</th>
+        <th>Uhrzeit</th>
+        <th>Ort</th>
+        <th>Preis</th>
+        <th>Bearbeiten</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let userAppointment of userAppointments">
+        <td><strong>{{userAppointment.date }}</strong></td>
+        <td><a [routerLink]="['/app/termin/details', userAppointment.id]"><strong>{{userAppointment.time }}</strong></a></td>
+        <td>{{userAppointment.calendar}}<br>({{ userAppointment.location }})</td>
+        <td>{{userAppointment.price }}€</td>
+        <td>
+          <a href="#" class="btn btn-info btn-xs" *ngIf="userAppointment.canClientCancel">
+            <span class="glyphicon glyphicon-calendar"></span> Verschieben
+          </a>
+          <a href="#" class="btn btn-danger btn-xs" *ngIf="userAppointment.canClientCancel">
+            <span class="glyphicon glyphicon-remove"></span> Absagen
+          </a>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<hr>
+<h5 class="page-header">Meine Zertifikate</h5>
+<div class="row appointmentList">
+  <div class="col-xs-12 col-md-12">
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Noch verfügbar</th>
+      </tr>
+      </thead>
+      <tr *ngFor="let userCertificate of userCertificates">
+        <td>{{userCertificate.id }}</td>
+        <td><strong>{{userCertificate.name }}</strong></td>
+        <td>{{userCertificate.certificate }}</td>
+        <td><strong>{{userCertificate.remainingCounts[userCertificate.appointmentTypeIDs[0]]}}</strong> Termine
+          verbleibend
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

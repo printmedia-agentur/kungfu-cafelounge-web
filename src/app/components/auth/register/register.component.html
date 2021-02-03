@@ -1,0 +1,539 @@
+<div class="row">
+  <div class="col-xs-12">
+    <h4 class="page-header">Registrieren</h4>
+  </div>
+</div>
+
+<!-- Custom Success/Error Message -->
+<div class="row show-hide-message">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12">
+    <!-- Registration Form -->
+    <form [formGroup]="form" (submit)="onRegisterSubmit()">
+      <!-- First name Input -->
+      <div class="row">
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="firstName">Vorname</label>
+            <div [ngClass]="{
+                'has-error':
+                  form.controls.firstName.errors &&
+                  form.controls.firstName.dirty,
+                'has-success': !form.controls.firstName.errors
+              }">
+              <input type="text" name="firstName" class="form-control" autocomplete="off" placeholder="* Ihr Vorname"
+                formControlName="firstName" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                    form.controls.firstName.errors?.required &&
+                    form.controls.firstName.dirty
+                  ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                    (form.controls.firstName.errors?.minlength &&
+                      form.controls.firstName.dirty) ||
+                    (form.controls.firstName.errors?.maxlength &&
+                      form.controls.firstName.dirty)
+                  ">
+                  Minimum characters: 3, Maximum characters: 15
+                </li>
+                <li *ngIf="
+                    form.controls.firstName.errors?.validateFirstName &&
+                    form.controls.firstName.dirty
+                  ">
+                  Der Vorname darf keine Sonderzeichen enthalten
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Last name Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="lastName">Nachname</label>
+            <div [ngClass]="{
+                'has-error':
+                  form.controls.lastName.errors && form.controls.lastName.dirty,
+                'has-success': !form.controls.lastName.errors
+              }">
+              <input type="text" name="lastName" class="form-control" autocomplete="off" placeholder="* Ihr Nachname"
+                formControlName="lastName" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                    form.controls.lastName.errors?.required &&
+                    form.controls.lastName.dirty
+                  ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                    (form.controls.lastName.errors?.minlength &&
+                      form.controls.lastName.dirty) ||
+                    (form.controls.lastName.errors?.maxlength &&
+                      form.controls.lastName.dirty)
+                  ">
+                  Minimum characters: 3, Maximum characters: 15
+                </li>
+                <li *ngIf="
+                    form.controls.lastName.errors?.validateLastName &&
+                    form.controls.lastName.dirty
+                  ">
+                  Der Nachname darf keine Sonderzeichen enthalten
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Username Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="username">Benutzername</label>
+            <div [ngClass]="{
+              'has-error':
+                (form.controls.username.errors &&
+                  form.controls.username.dirty) ||
+                (!usernameValid && form.controls.username.dirty),
+              'has-success': !form.controls.username.errors && usernameValid
+            }">
+              <input type="text" name="username" class="form-control" autocomplete="off" placeholder="*Benutzername"
+                formControlName="username" (keyup)="checkUsername()" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.username.errors?.required &&
+                  form.controls.username.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  (form.controls.username.errors?.minlength &&
+                    form.controls.username.dirty) ||
+                  (form.controls.username.errors?.maxlength &&
+                    form.controls.username.dirty)
+                ">
+                  Minimum characters: 3, Maximum characters: 15
+                </li>
+                <li *ngIf="
+                  form.controls.username.errors?.validateUsername &&
+                  form.controls.username.dirty
+                ">
+                  Benutzername must not have any special characters
+                </li>
+                <li *ngIf="usernameMessage">{{ usernameMessage }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Birthday Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="birthdate">Geburtstag</label>
+            <div [ngClass]="{
+              'has-error':
+                  form.controls.birthdate.errors &&
+                  form.controls.birthdate.dirty,
+                'has-success': !form.controls.birthdate.errors
+            }">
+              <div class="input-group">
+                <input class="form-control" style="float:none" placeholder="Geburtsdatum agenebn" ngx-mydatepicker name="birthdate"
+                  formControlName="birthdate" [options]="birthdateOptions" #dp="ngx-mydatepicker" (click)="dp.toggleCalendar()"
+                  [readonly]="true" />
+
+                <span class="input-group-btn">
+                  <!-- <button type="button" class="btn btn-default" (click)="dp.clearDate()">
+                    <i class="glyphicon glyphicon-remove"></i>
+                  </button> -->
+                  <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                  </button>
+                </span>
+              </div>
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.birthdate.errors?.required &&
+                  form.controls.birthdate.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  form.controls.birthdate.errors?.validateBirthdate &&
+                  form.controls.birthdate.dirty
+                ">
+                  Sie müssen mindestens 18 Jahre alt sein um myHEALFORM nutzen zu können.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <hr />
+        </div>
+
+        <!-- Email Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <div [ngClass]="{
+              'has-error':
+                (form.controls.email.errors && form.controls.email.dirty) ||
+                (!emailValid && form.controls.email.dirty),
+              'has-success': !form.controls.email.errors && emailValid
+            }">
+              <input type="text" name="email" class="form-control" autocomplete="off" placeholder="* Ihre E-Mail Adresse"
+                formControlName="email" (keyup)="checkEmail()" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.email.errors?.required &&
+                  form.controls.email.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  ((form.controls.email.errors?.minlength &&
+                    form.controls.email.dirty) ||
+                    (form.controls.email.errors?.maxlength &&
+                      form.controls.email.dirty)) &&
+                  form.controls.email.dirty
+                ">
+                  Minimum characters: 5, Maximum characters: 30
+                </li>
+                <li *ngIf="
+                  form.controls.email.errors?.validateEmail &&
+                  form.controls.email.dirty
+                ">
+                  Bitte geben Sie eine E-Mail Adresse an.
+                </li>
+                <li *ngIf="emailMessage">{{ emailMessage }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phone number Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="phone">Handy-Nr.</label>
+            <div [ngClass]="{
+              'has-error':
+                (form.controls.phone.errors && form.controls.phone.dirty) ||
+                (!phoneValid && form.controls.phone.dirty),
+              'has-success': !form.controls.phone.errors && phoneValid
+            }">
+              <input type="text" name="phone" class="form-control" autocomplete="off" placeholder="* Ihre Handy-Nr."
+                formControlName="phone" (keyup)="checkPhone()" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.phone.errors?.required &&
+                  form.controls.phone.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  ((form.controls.phone.errors?.minlength &&
+                    form.controls.phone.dirty) ||
+                    (form.controls.phone.errors?.maxlength &&
+                      form.controls.phone.dirty)) &&
+                  form.controls.phone.dirty
+                ">
+                  Minimum characters: 7, Maximum characters: 15
+                </li>
+                <li *ngIf="
+                  form.controls.phone.errors?.validatePhone &&
+                  form.controls.phone.dirty
+                ">
+                  Bitte geben Sie eine Handy-Nr. an.
+                </li>
+                <li *ngIf="phoneMessage">{{ phoneMessage }}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <hr />
+        </div>
+
+        <!-- Address Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="street">Adresse (mit Hausnummer)</label>
+            <div [ngClass]="{
+              'has-error':
+                  form.controls.street.errors &&
+                  form.controls.street.dirty,
+                'has-success': !form.controls.street.errors
+            }">
+              <input type="text" name="street" class="form-control" autocomplete="off" placeholder="*Straße"
+                formControlName="street" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.street.errors?.required &&
+                  form.controls.street.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  ((form.controls.street.errors?.minlength &&
+                    form.controls.street.dirty) ||
+                    (form.controls.street.errors?.maxlength &&
+                      form.controls.street.dirty)) &&
+                  form.controls.street.dirty
+                ">
+                  Minimum characters: 5, Maximum characters: 30
+                </li>
+                <li *ngIf="
+                  form.controls.street.errors?.validateStreet &&
+                  form.controls.street.dirty
+                ">
+                  Bitte geben Sie eine korrekte Anschrift an.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- City Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="city">Stadt / Ort</label>
+            <div [ngClass]="{
+              'has-error':
+                  form.controls.city.errors &&
+                  form.controls.city.dirty,
+                'has-success': !form.controls.city.errors
+            }">
+              <input type="text" name="city" class="form-control" autocomplete="off" placeholder="*Ort" formControlName="city" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.city.errors?.required &&
+                  form.controls.city.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  ((form.controls.city.errors?.minlength &&
+                    form.controls.city.dirty) ||
+                    (form.controls.city.errors?.maxlength &&
+                      form.controls.city.dirty)) &&
+                  form.controls.city.dirty
+                ">
+                  Minimum characters: 5, Maximum characters: 30
+                </li>
+                <li *ngIf="
+                  form.controls.city.errors?.validateCity &&
+                  form.controls.city.dirty
+                ">
+                  Bitte geben Sie einen korrekten Ort an.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- postcode Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="postcode">Postleizzahl</label>
+            <div [ngClass]="{
+              'has-error':
+                  form.controls.postcode.errors &&
+                  form.controls.postcode.dirty,
+                'has-success': !form.controls.postcode.errors
+            }">
+              <input type="text" name="postcode" class="form-control" autocomplete="off" placeholder="*plz"
+                formControlName="postcode" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.postcode.errors?.required &&
+                  form.controls.postcode.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  ((form.controls.postcode.errors?.minlength &&
+                    form.controls.postcode.dirty) ||
+                    (form.controls.postcode.errors?.maxlength &&
+                      form.controls.postcode.dirty)) &&
+                  form.controls.postcode.dirty
+                ">
+                  Minimum characters: 5, Maximum characters: 30
+                </li>
+                <li *ngIf="
+                  form.controls.postcode.errors?.validatePostcode &&
+                  form.controls.postcode.dirty
+                ">
+                  Bitte geben Sie eine korrekte PLZ an. Diese besteht aus 5 Ziffern.
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Country Input -->
+        <div class="col-xs-12 col-md-6">
+          <div class="form-group">
+            <label for="country">Land</label>
+            <div [ngClass]="{
+              'has-error':
+                  form.controls.country.errors &&
+                  form.controls.country.dirty,
+                'has-success': !form.controls.country.errors
+            }">
+              <input type="text" name="country" class="form-control" autocomplete="off" placeholder="*country"
+                formControlName="country" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.country.errors?.required &&
+                  form.controls.country.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  ((form.controls.country.errors?.minlength &&
+                    form.controls.country.dirty) ||
+                    (form.controls.country.errors?.maxlength &&
+                      form.controls.country.dirty)) &&
+                  form.controls.country.dirty
+                ">
+                  Minimum characters: 5, Maximum characters: 30
+                </li>
+                <li *ngIf="
+                  form.controls.country.errors?.validateEmail &&
+                  form.controls.country.dirty
+                ">
+                  This must be a valid e-mail
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <hr />
+        </div>
+
+        <!-- Password Input -->
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="password">Passwort</label>
+            <div [ngClass]="{
+              'has-error':
+                form.controls.password.errors && form.controls.password.dirty,
+              'has-success': !form.controls.password.errors
+            }">
+              <input type="password" name="password" class="form-control" autocomplete="off" placeholder="*Password"
+                formControlName="password" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.password.errors?.required &&
+                  form.controls.password.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  (form.controls.password.errors?.minlength &&
+                    form.controls.password.dirty) ||
+                  (form.controls.password.errors?.maxlength &&
+                    form.controls.password.dirty)
+                ">
+                  Minimum characters: 8, Maximum characters: 35
+                </li>
+                <li *ngIf="
+                  form.controls.password.errors?.validatePassword &&
+                  form.controls.password.dirty
+                ">
+                  Password must be at least 8 characters but no more than 35
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Confirm Password Input -->
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="confirm">Passwort bestätigen</label>
+            <div [ngClass]="{
+              'has-error':
+                (form.controls.confirm.errors && form.controls.confirm.dirty) ||
+                (form.errors?.matchingPasswords && form.controls.confirm.dirty),
+              'has-success':
+                !form.controls.confirm.errors && !form.errors?.matchingPasswords
+            }">
+              <input type="password" name="confirm" class="form-control" autocomplete="off" placeholder="*Confirm Password"
+                formControlName="confirm" />
+              <!-- Validation -->
+              <ul class="help-block">
+                <li *ngIf="
+                  form.controls.confirm.errors?.required &&
+                  form.controls.confirm.dirty
+                ">
+                  Das ist ein Pflichtfeld.
+                </li>
+                <li *ngIf="
+                  form.errors?.matchingPasswords && form.controls.confirm.dirty
+                ">
+                  Password do not match
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <hr />
+        </div>
+
+        <div class="col-xs-12">
+          Ich akzeptiere dies das
+          <div [ngClass]="{
+            'has-error':
+              form.controls.password.errors && form.controls.password.dirty,
+            'has-success': !form.controls.password.errors
+          }">
+            <input type="checkbox" name="acceptTerms" class="form-control" formControlName="acceptTerms" />
+            <!-- Validation -->
+            <ul class="help-block">
+              <li *ngIf="
+                form.controls.acceptTerms.errors?.requiredTrue &&
+                form.controls.acceptTerms.dirty
+              ">
+                Sie müssen die terms and cinditions akzeptirn.
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-xs-12">
+          <hr />
+        </div>
+
+        <!-- Submit Input -->
+        <div class="col-xs-12">
+          <input [disabled]="!form.valid || processing || !emailValid || !usernameValid || !phoneValid" type="submit"
+            class="btn btn-primary" value="Registrieren" />
+        </div>
+      </div>
+    </form>
+    <!-- Registration Form /-->
+  </div>
+</div>

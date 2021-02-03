@@ -1,0 +1,56 @@
+<div class="jumbotron text-center">
+  <h1>myHEALFORM</h1>
+  <p class="lead">Welcome to the myHEALFORM Application by <strong>Domenik Töfflinger</strong></p>
+  <div>
+    <a *ngIf="!authService.loggedIn()" routerLink="/auth/register" class="btn btn-primary">Registrieren</a>
+    <a *ngIf="!authService.loggedIn()" routerLink="/auth/login" class="btn btn-default">Login</a>
+    <a *ngIf="authService.loggedIn()" routerLink="/app/meine-termine" class="btn btn-success">Meine Termine ansehen</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-md-6">
+    <div class="thumbnail">
+      <img src="https://image.flaticon.com/icons/svg/417/417745.svg" alt="placeholder image" width="140" height="140">
+      <div class="caption">
+        <h4>Pathogenese</h4>
+        <p>Behandlung bei Neurodermitis, Schuppenflechte, Rheuma, Arthritis, Fibromyalgie (Faser-Muskel-Schmerz),
+          Kollagenose (Bindegewebserkrankung) und erektiler Dysfunktion möglich.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <div class=thumbnail> <img src="https://image.flaticon.com/icons/svg/417/417746.svg" alt="Generic placeholder image"
+        width="140" height="140">
+      <div class=caption>
+        <h4>Gesundheit & Schönheit</h4>
+        <p>Kann schon ab der ersten Behandlung gegen Cellulite, Falten, Entzündungen, Hautverunreinigungen, Burnout,
+          Schlafstörungen, Depressionen, Müdigkeit helfen und das Immunsystem stärken.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <div class=thumbnail> <img src="https://image.flaticon.com/icons/svg/417/417751.svg" alt="Generic placeholder image"
+        width="140" height="140">
+      <div class=caption>
+        <h4>Diät & Fettabbau</h4>
+        <p>Fettzellen können bei der Anwendung in der Kryosauna kristallisieren und absterben. Eine Therapiemöglichkeit
+          ohne OP oder Nebenwirkungen wie Narkose, Narben und Schmerzen.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-md-6">
+    <div class=thumbnail> <img src="https://image.flaticon.com/icons/svg/417/417751.svg" alt="Generic placeholder image"
+        width="140" height="140">
+      <div class=caption>
+        <h4>Leistungssportler</h4>
+        <p>Im Bereich der Sportphysiotherapie können die Eigenschaften der Körperkühlung zur Leistungssteigerung,
+          Verletzungs- und Wundheilung sowie zur Regeneration eingesetzt werden.</p>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,31 @@
+<h4 class="page-header">Meine Termine</h4>
+<span *ngIf="appointments">
+  <span *ngIf="appointments.length > 0">
+    <h5>Ihr nächster Termin:</h5>
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="row">
+          <div class="col-xs-12 col-sm-6">
+            <app-next-appointment></app-next-appointment>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        <app-appointment-table></app-appointment-table>
+      </div>
+    </div>
+  </span>
+  <span *ngIf="appointments.length === 0">
+    <h5>Keine Termine vorhanden.</h5>
+    <a routerLink="/app/termin-buchen">Buchen</a> Sie Ihren ersten Termin.
+  </span>
+</span>
+<span *ngIf="!appointments">
+  <h5><ngx-skeleton-loader
+    count="1"
+    [theme]="{ 'border-radius': '4px', height: '20px', width: '185px', margin: '2px 0 0 0'}"
+  ></ngx-skeleton-loader></h5>
+</span>

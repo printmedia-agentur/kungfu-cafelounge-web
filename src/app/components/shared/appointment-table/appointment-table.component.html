@@ -1,0 +1,119 @@
+<ul class="nav nav-tabs" style="margin-bottom: 20px;">
+  <li class="active">
+    <a href="#future" data-toggle="tab">Zukünftige Termine</a>
+  </li>
+  <li>
+    <a href="#past" data-toggle="tab">Vergangene Termine</a>
+  </li>
+</ul>
+<div class="tab-content ">
+  <div class="tab-pane active" id="future">
+    <div class="row appointmentList">
+      <div class="col-xs-12 col-md-12">
+        <div *ngIf="loading === false">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Uhrzeit</th>
+              <th>Ort</th>
+              <th>Preis</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tr *ngFor="let userAppointment of futureUserAppointmentsPaged">
+              <td>{{userAppointment.date }}</td>
+              <td>{{userAppointment.time }}</td>
+              <td>{{userAppointment.calendar}}<br>
+                <span style="color: #a5a5a5;">{{ userAppointment.location }}</span></td>
+              <td>{{userAppointment.price }}€</td>
+              <td><a [routerLink]="['/app/termin/details', userAppointment.id]"><strong><i-edit class="table-icons"></i-edit></strong></a></td>
+            </tr>
+          </table>
+          <!-- pager -->
+          <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <!--<li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(1)">First</a>
+            </li>-->
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+              <a (click)="setPage(pager.currentPage - 1)">«</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+              <a (click)="setPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.currentPage + 1)">»</a>
+            </li>
+            <!-- <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+              <a (click)="setPage(pager.totalPages)">Letzt</a>
+            </li>-->
+          </ul>
+        </div>
+        <div *ngIf="loading === true">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Uhrzeit</th>
+              <th>Ort</th>
+              <th>Preis</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tr>
+              <td colspan="5">
+                <ngx-skeleton-loader count="3" [theme]="{ 'border-radius': '4px', height: '40px'}">
+                </ngx-skeleton-loader>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane" id="past">
+    <div class="row appointmentList">
+      <div class="col-xs-12 col-md-12">
+        <div *ngIf="loading === false">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Uhrzeit</th>
+              <th>Ort</th>
+              <th>Preis</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tr *ngFor="let userAppointment of pastUserAppointments">
+              <td>{{userAppointment.date }}</td>
+              <td>{{userAppointment.time }}</td>
+              <td>{{userAppointment.calendar}}<br>
+                <span style="color: #a5a5a5;">{{ userAppointment.location }}</span></td>
+              <td>{{userAppointment.price }}€</td>
+              <td><a [routerLink]="['/app/termin/details', userAppointment.id]"><strong><i-edit class="table-icons"></i-edit></strong></a></td>
+            </tr>
+          </table>
+        </div>
+        <div *ngIf="loading === true">
+          <table class="table">
+            <thead>
+            <tr>
+              <th>Datum</th>
+              <th>Uhrzeit</th>
+              <th>Ort</th>
+              <th>Preis</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tr>
+              <td colspan="5">
+                <ngx-skeleton-loader count="3" [theme]="{ 'border-radius': '4px', height: '40px'}">
+                </ngx-skeleton-loader>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
