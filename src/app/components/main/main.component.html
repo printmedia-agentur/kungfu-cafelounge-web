@@ -1,15 +1,14 @@
 <app-navbar></app-navbar>
 
 <div class="container">
-
   <div class="row main" style="margin-top: 90px;">
     <div class="infoWrapper col-xs-12">
       <flash-messages></flash-messages>
       <app-verified-profile></app-verified-profile>
-      <!-- <mc-breadcrumbs></mc-breadcrumbs> -->
-    </div>
-    <div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''"  class="contentWrapper col-xs-12">
-      <router-outlet #o="outlet"></router-outlet>
     </div>
   </div>
+</div>
+
+<div [@fadeAnimation]="o.isActivated ? o.activatedRoute : ''"  class="contentWrapper">
+  <router-outlet #o="outlet"></router-outlet>
 </div>
