@@ -17,8 +17,7 @@
     "tsconfig": "tsconfig.json",
     "prefix": "app",
     "styles": [
-      "myhealform.css",
-      "styles.scss"
+      "main.scss"
     ],
     "scripts": [
       "../node_modules/jquery/dist/jquery.min.js"
