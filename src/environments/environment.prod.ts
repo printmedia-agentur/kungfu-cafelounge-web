@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  domain: 'api.healform.de'
+  domain: 'api.kungfu-cafelounge.de'
 };

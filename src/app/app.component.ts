@@ -9,7 +9,7 @@ import { HotjarService } from 'ng-hotjar';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  title = 'myHEALFORM';
+  title = 'KungFu Cafelounge';
 
   constructor(private _router: Router, private authService: AuthService, hotjarService: HotjarService) {}
 

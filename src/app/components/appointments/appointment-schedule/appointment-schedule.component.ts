@@ -286,7 +286,7 @@ export class AppointmentScheduleComponent implements OnInit {
               stripeId: this.stripeID,
               stripeToken: this.stripeToken,
               amount: this.selectedAppointmentPricingFormatted,
-              description: 'Ihr Einkauf bei myHEALFORM - ' + this.email
+              description: 'Ihr Einkauf bei KungFu Cafelounge - ' + this.email
             };
             const scheduleObj = {
               appointment,

@@ -5,7 +5,7 @@
 
 <hr>
 
-# myHEALFORM
+# KungFu Cafelounge
 
 Die erste original Cryosauna / Kältekammer in Kassel und Baunatal gilt als eine der weltweit modernsten physikalischen Therapiemöglichkeiten für Gesundheit, Fitness, Leistungsfähigkeit und Schönheit!
 
