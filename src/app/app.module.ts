@@ -32,7 +32,6 @@ import {LoadingBarRouterModule} from '@ngx-loading-bar/router';
 import {FlashMessagesModule} from 'angular2-flash-messages';
 import {AvatarModule} from 'ngx-avatar';
 import {NgxStripeModule} from 'ngx-stripe';
-import {HotjarModule} from 'ng-hotjar';
 import {NgxSkeletonLoaderModule} from 'ngx-skeleton-loader';
 import {NgxPayPalModule} from 'ngx-paypal';
 import {IconsModule} from './modules/icons/icons.module';
@@ -125,7 +124,6 @@ Sentry.init({
     LoadingBarRouterModule,
     AvatarModule,
     NgxStripeModule.forRoot(environment.stripe),
-    HotjarModule,
     NgxSkeletonLoaderModule,
     NgxPayPalModule,
     BrowserAnimationsModule,

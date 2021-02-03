@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './services/auth.service';
-import { HotjarService } from 'ng-hotjar';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +10,7 @@ import { HotjarService } from 'ng-hotjar';
 export class AppComponent implements OnInit {
   title = 'KungFu Cafelounge';
 
-  constructor(private _router: Router, private authService: AuthService, hotjarService: HotjarService) {}
+  constructor(private _router: Router, private authService: AuthService) {}
 
   ngOnInit() {}
 }
