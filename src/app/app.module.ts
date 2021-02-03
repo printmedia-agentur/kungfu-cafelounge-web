@@ -79,7 +79,7 @@ import {environment} from '../environments/environment';
 /* Sentry/Error Handling */
 import * as Sentry from '@sentry/browser';
 Sentry.init({
-  dsn: 'https://8e64f19fdaa84418ac7d0e96a8f7f54a@sentry.io/1275379'
+  dsn: ''
 });
 
 @NgModule({
