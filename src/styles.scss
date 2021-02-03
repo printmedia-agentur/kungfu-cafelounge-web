@@ -34,28 +34,6 @@ body {
   height: 100%;
 }
 
-@media (min-width: 768px) {
-  .container {
-    width: 768px;
-  }
-
-  .navbar-default .navbar-nav > li > a {
-    min-height: unset;
-  }
-}
-
-@media (min-width: 992px) {
-  .container {
-    width: 800px;
-  }
-}
-
-@media (min-width: 1200px) {
-  .container {
-    width: 800px;
-  }
-}
-
 input[type="radio"], .radio input[type="radio"], .radio-inline input[type="radio"] {
   margin-top: 8px;
   margin-right: 4px;
